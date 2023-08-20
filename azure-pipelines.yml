@@ -1,0 +1,71 @@
+variables:
+  - group: task-3 Variable group
+
+trigger:
+  branches:
+    include:
+      - main
+
+stages:
+  - stage: Build
+    displayName: "Build Stage"
+    pool:
+      name: demo-3
+    jobs:
+      - job: BuildJob
+        displayName: "Build Job"
+        steps:
+          - script: |
+              echo "Hello world"
+              sleep 0.5
+              echo "Build success"
+                        
+  - stage: dev
+    displayName: "Dev Stage"
+    dependsOn: Build
+    pool:
+      name: demo-3
+    jobs:
+      - job: DevJob
+        displayName: "Dev Job"
+        steps:
+          - script: |
+              sudo cp -R /home/ubuntu/myagent/_work/8/s/* /var/www/html/digital
+            displayName: "Copy to Dev directory"
+
+  - stage: PREPROD
+    displayName: "PREPROD"
+    dependsOn: dev
+    pool:
+      name: demo-3
+      environment: Prepod
+    jobs:
+      - deployment: DeployToPreprod
+        displayName: "Deploy to PREPROD"
+        environment: Prepod
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - script: |
+                    sudo cp -R /home/ubuntu/myagent/_work/8/s/* /var/www/html/digital
+                  displayName: "Copy to PREPROD directory"
+
+  - stage: PROD
+    displayName: "PROD Release"
+    dependsOn: PREPROD
+    pool:
+      name: demo-3
+      environment: prod
+    jobs:
+      - deployment: DeployToProd
+        displayName: "Deploy to PROD"
+        environment: prod
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - script: |
+                    sudo cp -R /home/ubuntu/myagent/_work/8/s/* /var/www/html/prod
+                    echo "Build success"
+                  displayName: "Copy to PROD directory"
