@@ -30,7 +30,7 @@ stages:
         displayName: "Dev Job"
         steps:
           - script: |
-              sudo cp -R /home/ubuntu/myagent/_work/8/s/* /var/www/html/digital
+              sudo cp -R /home/ubuntu/myagent/_work/8/s/* /var/www/html/Digital
             displayName: "Copy to Dev directory"
 
   - stage: PREPROD
@@ -48,7 +48,7 @@ stages:
             deploy:
               steps:
                 - script: |
-                    sudo cp -R /home/ubuntu/myagent/_work/8/s/* /var/www/html/digital
+                    sudo cp -R /home/ubuntu/myagent/_work/8/s/* /var/www/html/Digital
                   displayName: "Copy to PREPROD directory"
 
   - stage: PROD
@@ -66,6 +66,6 @@ stages:
             deploy:
               steps:
                 - script: |
-                    sudo cp -R /home/ubuntu/myagent/_work/8/s/* /var/www/html/prod
+                    sudo cp -R /home/ubuntu/myagent/_work/8/s/* /var/www/html/Digital2
                     echo "Build success"
                   displayName: "Copy to PROD directory"
