@@ -29,7 +29,7 @@ stages:
         displayName: "Dev Job"
         steps:
           - script: |
-              sudo cp -R /home/muneef/myagent/_work/1/s/* /var/www/html/digital
+              sudo cp -R /home/muneef/myagent/_work/1/s/* /var/www/html/digita1
             displayName: "Copy to Dev directory"
 
   - stage: PREPROD
