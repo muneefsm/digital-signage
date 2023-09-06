@@ -8,7 +8,7 @@ stages:
   - stage: Build
     displayName: "Build Stage"
     pool:
-      name: demo-3
+      name: Digital-Signage
     jobs:
       - job: BuildJob
         displayName: "Build Job"
