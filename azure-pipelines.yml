@@ -29,7 +29,7 @@ stages:
         displayName: "Dev Job"
         steps:
           - script: |
-              sudo cp -R /home/ubuntu/myagent/_work/1/s/* /var/www/html/digital
+              sudo cp -R /home/muneef/myagent/_work/1/s/* /var/www/html/digital
             displayName: "Copy to Dev directory"
 
   - stage: PREPROD
@@ -48,7 +48,7 @@ stages:
             deploy:
               steps:
                 - script: |
-                    sudo cp -R /home/ubuntu/myagent/_work/1/s/* /var/www/html/digita2
+                    sudo cp -R /home/muneef/myagent/_work/1/s/* /var/www/html/digita2
                   displayName: "Copy to PREPROD directory"
 
   - stage: PROD
@@ -66,6 +66,6 @@ stages:
             deploy:
               steps:
                 - script: |
-                    sudo cp -R /home/ubuntu/myagent/_work/1/s/* /var/www/html/digita3
+                    sudo cp -R /home/muneef/myagent/_work/1/s/* /var/www/html/digita3
                     echo "Build success"
                   displayName: "Copy to PROD directory"
